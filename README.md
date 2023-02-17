@@ -20,7 +20,7 @@ pip install -r requirements.txt
 flask run
 ```
 
-## Architecture Layers of the project
+## Architecture Layers Of The Project
 
 - Controller
 - Views/API
