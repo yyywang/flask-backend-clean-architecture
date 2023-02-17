@@ -9,10 +9,10 @@ DEBUG = True
 DB_CONFIG = {
     'user': 'root',
     'pwd': 'a12345678',
-    'host': 'localhost',
+    'host': 'db',
     'port': 3306,
     'db_name': 'fbca'
 }
 
-SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://%s:%s@%s:%s/%s?charset=utf8mb4' % (
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://%s:%s@%s:%s/%s?charset=utf8mb4' % (
     DB_CONFIG['user'], DB_CONFIG['pwd'], DB_CONFIG['host'], DB_CONFIG['port'], DB_CONFIG['db_name'])

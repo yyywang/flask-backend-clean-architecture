@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  uwsgi:
+    platform: "linux/amd64"
+    restart: on-failure
+    build:
+      context: .
+      args:
+        APP_ENV: "${APP_ENV}"
+      dockerfile: Dockerfile
+    image: "${IMAGE_REPO_URL_UWSGI}:${UWSGI_VERSION}"
+    container_name: uwsgi
+    command: ${UWSGI_START_CMD}
+    ports:
+      - "${UWSGI_SERVER_PORT}:5010"
+    links:
+      - db:docker_db_host
+    depends_on:
+      - db
+    environment:
+      - APP_ENV
+      - UWSGI_SERVER_PORT
+      - UWSGI_START_CMD
+
+  db:
+    image: mysql:8.0
+    platform: "linux/amd64"
+    container_name: db
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_general_ci"
+      - "--ft_min_word_len=1"
+    environment:
+      - MYSQL_ROOT_PASSWORD=a12345678
+      - MYSQL_DATABASE=fbca
+      - TZ=Asia/Shanghai
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "${MYSQL_OUTER_PORT}:3306"
+
+volumes:
+  db-data:
