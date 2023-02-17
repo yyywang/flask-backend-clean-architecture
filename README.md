@@ -4,6 +4,22 @@
 
 A Python Backend Clean Architecture project with Flask, MySQL, JWT Authentication Middleware, Test, and Docker.
 
+## Quick Start
+
+- using docker
+
+```shell
+docker-compose --env-file env/.env.dev up
+```
+
+- original start
+
+```shell
+# custom `DB_CONFIG` in `app/config/development.py` 
+pip install -r requirements.txt
+flask run
+```
+
 ## Architecture Layers of the project
 
 - Controller

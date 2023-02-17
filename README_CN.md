@@ -4,6 +4,22 @@
 
 基于 Flask 的 Python 后端项目架构，包含 MySQL、JWT 鉴权、常用中间件、测试和 Docker 等。
 
+## 快速上手
+
+- 使用 docker
+
+```shell
+docker-compose --env-file env/.env.dev up
+```
+
+- 不使用 docker
+
+```shell
+# 将 app/config/development.py 中的 DB_CONFIG 改为自己的数据库配置
+pip install -r requirements.txt
+flask run
+```
+
 ## 项目架构
 
 - Controller
